@@ -10,9 +10,9 @@ import WineListScreen from './screens/WineListScreen';
 import InputFormScreen from './screens/InputFormScreen';
 import ProfileScreen from './screens/ProfileScreen';
 
-const TabIcon = ({ selected, title }) => {
+const TabIcon = ({ title }) => {
   return (
-    <Text style={{ color: selected ? 'red' : 'black' }}>{title}</Text>
+    <Text style={{ color: 'white' }}>{title}</Text>
   );
 };
 
@@ -23,7 +23,7 @@ const App = () => {
         <Scene
           key="tabbar"
           tabs={true}
-          tabBarStyle={{ backgroundColor: '#FFFFFF'}}
+          tabBarStyle={{ backgroundColor: '#000000'}}
         >
           <Scene key="winelist" title="List" icon={TabIcon}>
             <Scene
@@ -46,7 +46,7 @@ const App = () => {
               component={ProfileScreen}
               title="Profile"
             />
-            </Scene>
+          </Scene>
         </Scene>
 
       </Scene>
