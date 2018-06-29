@@ -1,94 +1,64 @@
-import React from 'react';
-import {
-  StyleSheet,
-  Text,
-  View
-} from 'react-native';
+import React, { Component } from 'react';
+import { StyleSheet, Text, View } from 'react-native';
 import { Router, Scene } from 'react-native-router-flux';
+import { Container, Header, Content, Form, Item, Input, Icon } from 'native-base';
 
-import WineListScreen from './screens/WineListScreen';
-import InputFormScreen from './screens/InputFormScreen';
-import ProfileScreen from './screens/ProfileScreen';
+// import Login from './screens/Login';
+import WineList from './components/WineList';
+import WineForm from './components/WineForm';
+import Profile from './components/Profile';
 
-const TabIcon = ({ title }) => {
+import TestComponent from './components/TestComponent';
+
+const ListIcon = () => {
   return (
-    <Text style={{ color: 'white' }}>{title}</Text>
+  <Icon style={{fontSize: 25, color: '#3d1f24'}} name='wine' />
+  );
+};
+
+const PlusIcon = () => {
+  return (
+  <Icon style={{fontSize: 25, color: '#3d1f24'}} name='add' />
+  );
+};
+
+const UserIcon = () => {
+  return (
+  <Icon style={{fontSize: 25, color: '#3d1f24'}} name='person' />
   );
 };
 
 const App = () => {
   return (
-    <Router>
+    <Router navigationBarStyle={styles.navBar} titleStyle={styles.navTitle}>
       <Scene key="root">
-        <Scene
-          key="tabbar"
-          tabs={true}
-          tabBarStyle={{ backgroundColor: '#000000'}}
-        >
-          <Scene key="winelist" title="List" icon={TabIcon}>
-            <Scene
-              key="winelist"
-              component={WineListScreen}
-              title="WineList"
-              initial
-            />
-          </Scene>
-          <Scene key="add" title="Add" icon={TabIcon}>
-            <Scene
-              key="inputform"
-              component={InputFormScreen}
-              title="InputForm"
-            />
-          </Scene>
-          <Scene key="profile" title="Profile" icon={TabIcon}>
-            <Scene
-              key="profile"
-              component={ProfileScreen}
-              title="Profile"
-            />
-          </Scene>
+        {/* <Scene key="login" title="login" component={Login} initial /> */}
+          <Scene key="tabbar" tabs tabBarStyle={styles.tabBar}>
+          <Scene key="winelist" title="Your Wines" icon={ListIcon} component={WineList}/>
+          <Scene key="wineform" title="Add a Wine" icon={PlusIcon} component={WineForm}/>
+          <Scene key="profile" title="Profile" icon={UserIcon} component={Profile} />
+          <Scene key="test" title="Test" icon={UserIcon} component={TestComponent} />
         </Scene>
-
       </Scene>
     </Router>
-  );
+  )
 }
 
 const styles = StyleSheet.create({
-  container: {
-    flex: 1,
-    justifyContent: 'center',
-    alignItems: 'center',
-    backgroundColor: '#F5FCFF',
+  navBar: {
+    // flex: 1,
+    // flexDirection: 'row',
+    // alignItems: 'center',
+    // justifyContent: 'center',
+    backgroundColor: '#3d1f24'
   },
-  welcome: {
-    fontSize: 20,
-    textAlign: 'center',
-    margin: 10,
+  navTitle: {
+    color: '#ffffff',
+    fontSize: 19
   },
-});
+  tabBar: {
+
+  }
+})
 
 export default App;
-
-// import React from 'react';
-// import { StyleSheet, Text, View } from 'react-native';
-
-// export default class App extends React.Component {
-//   render() {
-//     return (
-//       <View style={styles.container}>
-//         <Text>Open up App.js to start working on your app!</Text>
-//         <Text>Open up App.js to start working on your app!</Text>
-//       </View>
-//     );
-//   }
-// }
-
-// const styles = StyleSheet.create({
-//   container: {
-//     flex: 1,
-//     backgroundColor: '#fff',
-//     alignItems: 'center',
-//     justifyContent: 'center',
-//   },
-// });
