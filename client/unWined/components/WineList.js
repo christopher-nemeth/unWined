@@ -15,6 +15,18 @@ export default class WineList extends Component {
   }
 
   componentDidMount() {
+   this.getWines()
+
+  fetch('https://unwined-app.herokuapp.com/users')
+    .then(res => res.json())
+    .then(res => {
+      this.setState({
+        users: res.data
+      })
+    })
+  }
+
+  getWines(props) {
     fetch('https://unwined-app.herokuapp.com/wine')
       .then(res => res.json())
       .then(res => {
@@ -22,16 +34,11 @@ export default class WineList extends Component {
           wine: res.data
         })
       })
-
-    fetch('https://unwined-app.herokuapp.com/users')
-      .then(res => res.json())
-      .then(res => {
-        this.setState({
-          users: res.data
-        })
-      })
   }
 
+  componentWillReceiveProps(props) {
+    this.getWines()
+  }
 
   render() {
     return (
@@ -55,7 +62,4 @@ export default class WineList extends Component {
     )}
 }
 
-{/* <ScrollView style={{ marginTop: 0, marginBottom: 0, padding: 0, backgroundColor: '#e5e5e5' }}> */}
-{/* <ScrollView contentContainerStyle={{ flex: 1, flexDirection: "column", alignItems: "center", justifyContent: "center", width: 100, marginTop: 0, marginBottom: 0, padding: 0, backgroundColor: '#e5e5e5' }}> */}
-{/* updatedHike={this.props.updatedHike} */}
 

@@ -31,11 +31,11 @@ const UserIcon = () => {
 const App = () => {
   return (
     <Router navigationBarStyle={styles.navBar} titleStyle={styles.navTitle}>
-      <Scene key="root">
+      <Scene type="replace" key="root">
         {/* <Scene key="login" title="login" component={Login} initial /> */}
           <Scene key="tabbar" tabs tabBarStyle={styles.tabBar}>
           <Scene key="winelist" title="Your Wines" icon={ListIcon} component={WineList}/>
-          <Scene key="wineform" title="Add a Wine" icon={PlusIcon} component={WineForm}/>
+          <Scene key="wineform" title="Add a Wine" type="replace" icon={PlusIcon} component={WineForm}/>
           <Scene key="profile" title="Profile" icon={UserIcon} component={Profile} />
           <Scene key="test" title="Test" icon={UserIcon} component={TestComponent} />
         </Scene>

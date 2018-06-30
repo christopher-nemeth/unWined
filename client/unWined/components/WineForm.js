@@ -1,14 +1,14 @@
 import React, { Component } from 'react';
 import { StyleSheet, Text, View } from 'react-native';
 import { Container, Content, Form, Item, Input, Picker, Icon, Left, Body, Title, Right, Textarea, Button } from 'native-base';
-import { Actions } from 'react-native-router-flux';
+import { Actions, ActionConst } from 'react-native-router-flux';
 
 export default class WineForm extends Component {
   constructor(props) {
     super(props)
     this.state = {
-      wine: [],
-      selected2: undefined
+      wine: []
+
     }
   }
 
@@ -20,27 +20,18 @@ export default class WineForm extends Component {
           wine: res.data
         })
       })
-
-    fetch('https://unwined-app.herokuapp.com/users')
-      .then(res => res.json())
-      .then(res => {
-        this.setState({
-          users: res.data
-        })
-      })
   }
 
-  handleChange = (event) => {
-    const name = event.target.name
-    this.setState({ [name]: event.target.value })
-    console.log(event.target);
+  handleChange = (event, fieldName) => {
+    console.log(event);
+    this.setState({ [fieldName]: event})
+    // console.log(event.target);
 
   }
 
-  formSubmit = (event) => {
-    event.preventDefault()
+  formSubmit = () => {
     const url = 'https://unwined-app.herokuapp.com/wine'
-    const postData = {
+    const data = {
       wine_name: this.state.wine_name,
       color: this.state.color,
       varietal: this.state.varietal,
@@ -48,20 +39,39 @@ export default class WineForm extends Component {
       country_origin: this.state.country_origin,
       tasting_notes: this.state.tasting_notes,
       rating: this.state.rating,
-      image_url: this.state.image_url
+      image_url: this.state.image_url,
+      user_id: this.state.user_id
     }
+
     fetch(url, {
       method: 'POST',
       headers: {
         'content-type': 'application/json'
       },
-      body: JSON.stringify(postData),
+      body: JSON.stringify({
+        wine_name: this.state.wine_name,
+        color: this.state.color,
+        varietal: this.state.varietal,
+        vintage: this.state.vintage,
+        country_origin: this.state.country_origin,
+        tasting_notes: this.state.tasting_notes,
+        rating: this.state.rating,
+        image_url: this.state.image_url,
+        user_id: 1
+      }),
     })
       .then(response => response.json())
       .then(response => {
-        // this.props.updatedCard(response)
+        Actions.winelist({ date: Date.now() })
+        Actions.refresh("winelist")
       })
-    .then(this.setState({
+      .catch(
+        console.error
+    )
+  }
+
+  resetForm = () => {
+    this.setState({
       wine_name: '',
       color: '',
       varietal: '',
@@ -70,20 +80,23 @@ export default class WineForm extends Component {
       tasting_notes: '',
       rating: '',
       image_url: ''
-      }))
+    })
   }
 
-  onValueChange2(value) {
+  onColorChange = (color) => {
     this.setState({
-      selected2: value
-    });
+      color
+    })
+
   }
   render() {
+    console.log(this.state);
+
     return (
       <Container>
         <Content>
           <Item regular>
-            <Input placeholder="Wine Name" name="wine_name" onChange={this.handleChange} />
+            <Input placeholder="Wine Name" onChangeText={(event) => this.handleChange(event, "wine_name")} />
           </Item>
           <Item regular picker>
             <Picker
@@ -92,29 +105,29 @@ export default class WineForm extends Component {
               placeholder="Color"
               placeholderStyle={{ color: "#4f4f4f" }}
               selectedValue={this.state.selected2}
-              onValueChange={this.onValueChange2.bind(this)}
+              onValueChange={(event) => this.onColorChange(event, "color")}
             >
-              <Picker.Item label="Red" value="key0" />
-              <Picker.Item label="White" value="key1" />
-              <Picker.Item label="Rose" value="key2" />
+              <Picker.Item label="Red" value="Red" />
+              <Picker.Item label="White" value="White" />
+              <Picker.Item label="Rose" value="Rose" />
             </Picker>
           </Item>
           <Item regular>
-            <Input placeholder='Varietal' name="varietal" onChange={this.handleChange}/>
+            <Input placeholder='Varietal' onChangeText={(event) => this.handleChange(event, "varietal")}/>
           </Item>
           <Item regular>
-            <Input placeholder= 'Vintage' name="vintage" onChange={this.handleChange}/>
+            <Input placeholder= 'Vintage' onChangeText={(event) => this.handleChange(event, "vintage")}/>
           </Item>
           <Item regular>
-            <Input placeholder='Origin Country' name="origin_country" onChange={this.handleChange}/>
+            <Input placeholder='Origin Country' onChangeText={(event) => this.handleChange(event, "origin_country")}/>
           </Item>
           <Item regular>
-            <Input placeholder='Rating' name="rating" onChange={this.handleChange}/>
+            <Input placeholder='Rating' onChangeText={(event) => this.handleChange(event, "rating")}/>
           </Item>
           <Item regular>
-            <Input placeholder='Image Url' name="image_url" onChange={this.handleChange}/>
+            <Input placeholder='Image Url' onChangeText={(event) => this.handleChange(event, "image_url")}/>
           </Item>
-          <Textarea rowSpan={5} bordered placeholder="Tasting Notes:" name="tasting_notes" onChange={this.handleChange} />
+          <Textarea rowSpan={5} bordered placeholder="Tasting Notes:" onChangeText={(event) => this.handleChange(event, "tasting_notes")}/>
           <Content>
             <Button style={[styles.button]} onPress={this.formSubmit}><Text>Submit</Text></Button>
           </Content>
