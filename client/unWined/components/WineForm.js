@@ -125,7 +125,7 @@ export default class WineForm extends Component {
             <Input placeholder='Rating' onChangeText={(event) => this.handleChange(event, "rating")}/>
           </Item>
           <Item regular>
-            <Input placeholder='Image Url' onChangeText={(event) => this.handleChange(event, "image_url")}/>
+            <Input placeholder='Image Url' autoCapitolize="false" onChangeText={(event) => this.handleChange(event, "image_url")}/>
           </Item>
           <Textarea rowSpan={5} bordered placeholder="Tasting Notes:" onChangeText={(event) => this.handleChange(event, "tasting_notes")}/>
           <Content>

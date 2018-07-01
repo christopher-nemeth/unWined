@@ -1,9 +1,10 @@
 import React, { Component } from 'react';
-import { StyleSheet, Text, View, ScrollView } from 'react-native';
+import { StyleSheet, Text, View, ScrollView, StatusBar } from 'react-native';
 import { Container, Header, Content, Form, Item, Input, Picker, Icon, Left, Body, Title, Right, Textarea } from 'native-base';
 import { Actions } from 'react-native-router-flux';
 
 import WineCard  from './WineCard'
+
 
 export default class WineList extends Component {
   constructor(props) {
@@ -42,6 +43,7 @@ export default class WineList extends Component {
 
   render() {
     return (
+
       <ScrollView style={{ marginTop: 0, marginBottom: 0, padding: 0, backgroundColor: '#e5e5e5' }}>
         {this.state.wine.map((wine, index) => {
           return (
@@ -51,15 +53,16 @@ export default class WineList extends Component {
               color={wine.color}
               varietal={wine.varietal}
               vintage={wine.vintage}
-              country_origin={wine.counrty_origin}
+              country_origin={wine.country_origin}
               tasting_notes={wine.tasting_notes}
               rating={wine.rating}
               image_url={wine.image_url}
             />
           )
         })}
+        <View>
+          <StatusBar barStyle="light-content" />
+        </View>
         </ScrollView>
     )}
 }
-
-
