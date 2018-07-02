@@ -8,7 +8,7 @@ export default class Login extends React.Component {
 
   render() {
     return (
-      <ImageBackground style={styles.wineBarBackground} source={require('./wine-bar-purple.jpg')}>
+      <ImageBackground style={styles.wineBarBackground} source={require('./wine-bar-purple2.jpg')}>
       <View style={styles.container}>
           <Image style={styles.logo} source={require('./unWined-logo.png')} />
           <FormLabel></FormLabel>
@@ -34,6 +34,7 @@ export default class Login extends React.Component {
             autoCapitolize="none"
           />
           <Button
+            color = 'black'
             borderRadius={30}
             containerViewStyle={{ width: '50%', marginTop: 60 }}
             title='Login'
@@ -41,6 +42,7 @@ export default class Login extends React.Component {
             onPress={() => Actions.winelist()}
           />
           <Button
+            color = 'black'
             borderRadius={30}
             containerViewStyle={{ width: '50%', marginTop: 20 }}
             title='Sign Up!'

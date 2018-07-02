@@ -1,25 +1,29 @@
 import React, { Component } from 'react';
 import { Image, StyleSheet } from 'react-native';
-import { Container, Header, Content, Card, CardItem, Thumbnail, Text, Button, Icon, Left, Body, Right } from 'native-base';
-import { Rating } from 'react-native-elements';
-
-
-// const wineGlassIcon = require('./wine-glass2.png')
+import { Container, Header, Content, Card, CardItem, Thumbnail, Text, Button, Icon, Left, Body, Right, } from 'native-base';
+import { Rating, Avatar } from 'react-native-elements';
 
 
 export default class WineCard extends Component {
   render() {
     return (
-
         <Content>
-          <Card style={{flex: 0, marginBottom: 20}}>
-            <CardItem>
-                <Body>
+          <Card style={{flex: 0, marginBottom: 7}}>
+          <CardItem>
+            <Left>
+              <Avatar
+                medium
+                rounded
+                source={{uri: "https://i.imgur.com/lNJc4ZWl.jpg"}}
+                activeOpacity={0.7}
+              />
+              <Body>
                   <Text>{this.props.wine_name}</Text>
                   <Text note>{this.props.color}</Text>
                   <Text note>{this.props.country_origin}</Text>
-                </Body>
-            </CardItem>
+              </Body>
+            </Left>
+          </CardItem>
             <CardItem>
               <Body>
                 <Image source={{ uri: this.props.image_url }} style={{ height: 200, width: 340, flex: 1 }} />
@@ -30,7 +34,7 @@ export default class WineCard extends Component {
                 fractions={1}
                 startingValue={this.props.rating}
                 imageSize={20}
-                style={{ paddingVertical: 10 }}
+                style={{ paddingVertical: 7 }}
               />
               </Body>
             </CardItem>

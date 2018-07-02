@@ -7,8 +7,8 @@ export default class WineForm extends Component {
   constructor(props) {
     super(props)
     this.state = {
-      wine: []
-
+      wine: [],
+      users:[]
     }
   }
 
@@ -25,8 +25,6 @@ export default class WineForm extends Component {
   handleChange = (event, fieldName) => {
     console.log(event);
     this.setState({ [fieldName]: event})
-    // console.log(event.target);
-
   }
 
   formSubmit = () => {
