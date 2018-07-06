@@ -1,7 +1,8 @@
 import React, { Component } from 'react';
 import { StyleSheet, Text, View } from 'react-native';
-import { Container, Content, Form, Item, Input, Picker, Icon, Left, Body, Title, Right, Textarea, Button } from 'native-base';
+import { Container, Content, Form, Item, Input, Picker, Icon, Left, Body, Title, Right, Textarea } from 'native-base';
 import { Actions, ActionConst } from 'react-native-router-flux';
+import { Button, FormLabel, FormInput } from 'react-native-elements';
 
 export default class WineForm extends Component {
   constructor(props) {
@@ -117,7 +118,7 @@ export default class WineForm extends Component {
             <Input placeholder= 'Vintage' onChangeText={(event) => this.handleChange(event, "vintage")}/>
           </Item>
           <Item regular>
-            <Input placeholder='Origin Country' onChangeText={(event) => this.handleChange(event, "origin_country")}/>
+            <Input placeholder='Origin Country' onChangeText={(event) => this.handleChange(event, "country_origin")}/>
           </Item>
           <Item regular>
             <Input placeholder='Rating' onChangeText={(event) => this.handleChange(event, "rating")}/>
@@ -126,14 +127,32 @@ export default class WineForm extends Component {
             <Input placeholder='Image Url' autoCapitolize="false" onChangeText={(event) => this.handleChange(event, "image_url")}/>
           </Item>
           <Textarea rowSpan={5} bordered placeholder="Tasting Notes:" onChangeText={(event) => this.handleChange(event, "tasting_notes")}/>
-          <Content>
-            <Button style={[styles.button]} onPress={this.formSubmit}><Text>Submit</Text></Button>
+          <Content  style={{flex: 1, alignItems: 'center', fontSize: 20}}>
+            {/* <Button  borderRadius={30} style={[styles.button]} onPress={this.formSubmit}><Text>Submit</Text></Button> */}
+          <Button
+              color='black'
+              style={{width: 100}}
+            borderRadius={30}
+            containerViewStyle={{marginTop: 50 }}
+            title='Submit!'
+            backgroundColor='#dedede'
+            onPress={this.formSubmit}></Button>
           </Content>
         </Content>
       </Container>
     );
   }
 }
+
+  //  <Button
+  //           color = 'black'
+  //           borderRadius={30}
+  //           containerViewStyle={{ width: '70%', marginTop: 20 }}
+  //           title='Sign Up!'
+  //       backgroundColor='#dedede'
+  //         onPress={this.formSubmit}><Text>Submit</Text></Button>
+
+
 
 const styles = StyleSheet.create({
   center: {

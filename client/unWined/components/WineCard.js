@@ -7,27 +7,27 @@ import { Rating, Avatar } from 'react-native-elements';
 export default class WineCard extends Component {
   render() {
     return (
-        <Content>
-          <Card style={{flex: 0, marginBottom: 7}}>
+      <Content>
+        <Card style={{flex: 0, marginBottom: 4}}>
+        <CardItem>
+          <Left>
+            <Avatar
+              medium
+              rounded
+              source={{uri: "https://i.imgur.com/lNJc4ZWl.jpg"}}
+              activeOpacity={0.7}
+            />
+            <Body>
+              <Text>{this.props.wine_name}</Text>
+              <Text note>{this.props.color}</Text>
+              <Text note>{this.props.country_origin}</Text>
+            </Body>
+          </Left>
+        </CardItem>
           <CardItem>
-            <Left>
-              <Avatar
-                medium
-                rounded
-                source={{uri: "https://i.imgur.com/lNJc4ZWl.jpg"}}
-                activeOpacity={0.7}
-              />
-              <Body>
-                  <Text>{this.props.wine_name}</Text>
-                  <Text note>{this.props.color}</Text>
-                  <Text note>{this.props.country_origin}</Text>
-              </Body>
-            </Left>
-          </CardItem>
-            <CardItem>
-              <Body>
-                <Image source={{ uri: this.props.image_url }} style={{ height: 200, width: 340, flex: 1 }} />
-                <Text style={styles.padding}>Tasting Notes:</Text>
+            <Body>
+              <Image source={{ uri: this.props.image_url }} style={{ height: 200, width: 340, flex: 1 }} />
+              <Text style={styles.padding}>Tasting Notes:</Text>
               <Text style={styles.font}>{this.props.tasting_notes}</Text>
               <Rating
                 type="star"
@@ -36,10 +36,10 @@ export default class WineCard extends Component {
                 imageSize={20}
                 style={{ paddingVertical: 7 }}
               />
-              </Body>
-            </CardItem>
-          </Card>
-        </Content>
+            </Body>
+          </CardItem>
+        </Card>
+      </Content>
     );
   }
 }

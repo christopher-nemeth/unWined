@@ -3,50 +3,46 @@ import { StyleSheet, Text, View, ScrollView, StatusBar } from 'react-native';
 import { Container, Header, Content, Form, Item, Input, Picker, Icon, Left, Body, Title, Right, Textarea } from 'native-base';
 import { Actions } from 'react-native-router-flux';
 
-import WineCard from './WineCard'
+import FriendCard from './FriendCard'
 
-export default class WineList extends Component {
+export default class FriendList extends Component {
   constructor(props) {
     super(props)
     this.state = {
-      wine: [],
       users: []
     }
   }
 
-  componentDidMount() {
-   this.getWines()
+ componentDidMount() {
+   this.getUsers()
   }
 
-  getWines(props) {
-    fetch('https://unwined-app.herokuapp.com/wine')
+  getUsers(props) {
+    fetch('https://unwined-app.herokuapp.com/users')
       .then(res => res.json())
       .then(res => {
         this.setState({
-          wine: res.data
+          users: res.data
         })
       })
   }
 
   componentWillReceiveProps(props) {
-    this.getWines()
+    this.getUsers()
   }
 
   render() {
     return (
       <ScrollView style={{ marginTop: 0, marginBottom: 0, padding: 0, backgroundColor: '#e5e5e5' }}>
-        {this.state.wine.map((wine, index) => {
+        {this.state.users.map((users, index) => {
           return (
-            <WineCard
+            <FriendCard
               key={index}
-              wine_name={wine.wine_name}
-              color={wine.color}
-              varietal={wine.varietal}
-              vintage={wine.vintage}
-              country_origin={wine.country_origin}
-              tasting_notes={wine.tasting_notes}
-              rating={wine.rating}
-              image_url={wine.image_url}
+              name={users.name}
+              user_name={users.user_name}
+              image_url={users.image_url}
+              location={users.location}
+              wines_logged={users.wines_logged}
             />
           )
         })}
@@ -54,5 +50,6 @@ export default class WineList extends Component {
           <StatusBar barStyle="light-content" />
         </View>
       </ScrollView>
-  )}
+    )
+  }
 }
