@@ -29,3 +29,23 @@ unWined is a fullstack mobile wine tracking app that I developed for my capstone
 - Learn and incorpoate OAuth to have users.
 - Add camera feature for users to take pictures of the wine they try.
 - Incorporate a feed to see what your friends are drinking once there are users adding data to the database.
+
+## Setup Instructions
+
+To run this project locally:
+
+1. Fork and clone this repo
+2. In your command line run: `git clone {your-forked-repo-link}`
+3. Run `npm install`
+4. From ./unWined/client/unWined/ you can run `npm start` to load the project in expo.
+
+## Contact Author
+Christopher Nemeth
+cnemeth1@gmail.com
+
+If you would like to contribute please contact me here.
+
+
+--
+MIT License
+
