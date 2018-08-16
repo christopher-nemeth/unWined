@@ -1,5 +1,4 @@
-![unWined-image](unWined.png)
-
+<!-- ![unWined-image](unWined.png) -->
 # unWined
 unWined is a fullstack mobile wine tracking app that I developed for my capstone project at Galvanize. It's current iteration is still a work in progress and it will continue to be my pet project moving forward. The most challening aspect of this project was to implement an unfamiliar technology, in this case, it was React Native.
 - [Demo](https://www.youtube.com/watch?v=XJZcQb4Z6gY)
